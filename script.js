@@ -69,7 +69,6 @@ document.addEventListener('DOMContentLoaded', function() {
 window.addEventListener('scroll', animateOnScroll);
 
 // Formulário de contato
-// Formulário de contato
 document.querySelector('.contact-form').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -78,7 +77,6 @@ document.querySelector('.contact-form').addEventListener('submit', function(e) {
     const message = document.getElementById('message').value;
     
     if (name && email && message) {
-        // Enviar via Formspree
         fetch(this.action, {
             method: 'POST',
             body: new FormData(this),
