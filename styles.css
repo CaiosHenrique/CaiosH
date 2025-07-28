@@ -286,6 +286,13 @@ h2 {
     font-size: 3rem;
 }
 
+.project-image img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
 .project-content {
     padding: 1.5rem;
 }
