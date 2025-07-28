@@ -70,32 +70,18 @@ window.addEventListener('scroll', animateOnScroll);
 
 // Formulário de contato
 document.querySelector('.contact-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const message = document.getElementById('message').value;
     
-    if (name && email && message) {
-        fetch(this.action, {
-            method: 'POST',
-            body: new FormData(this),
-            headers: {
-                'Accept': 'application/json'
-            }
-        }).then(response => {
-            if (response.ok) {
-                alert('Obrigado pela mensagem! Entrarei em contato em breve.');
-                this.reset();
-            } else {
-                alert('Ops! Houve um problema ao enviar a mensagem.');
-            }
-        }).catch(error => {
-            alert('Erro ao enviar mensagem. Tente novamente.');
-        });
-    } else {
+    if (!name || !email || !message) {
+        e.preventDefault();
         alert('Por favor, preencha todos os campos.');
+        return false;
     }
+    
+    // Não previne o default - deixa o formulário enviar naturalmente
+    alert('Enviando mensagem...');
 });
 
 // Typing effect para o título
