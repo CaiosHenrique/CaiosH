@@ -69,19 +69,32 @@ document.addEventListener('DOMContentLoaded', function() {
 window.addEventListener('scroll', animateOnScroll);
 
 // Formulário de contato
+// Formulário de contato
 document.querySelector('.contact-form').addEventListener('submit', function(e) {
     e.preventDefault();
-    
-    // Aqui você pode adicionar a lógica para enviar o formulário
-    // Por exemplo, usar um serviço como Formspree, Netlify Forms, etc.
     
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const message = document.getElementById('message').value;
     
     if (name && email && message) {
-        alert('Obrigado pela mensagem! Entrarei em contato em breve.');
-        this.reset();
+        // Enviar via Formspree
+        fetch(this.action, {
+            method: 'POST',
+            body: new FormData(this),
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(response => {
+            if (response.ok) {
+                alert('Obrigado pela mensagem! Entrarei em contato em breve.');
+                this.reset();
+            } else {
+                alert('Ops! Houve um problema ao enviar a mensagem.');
+            }
+        }).catch(error => {
+            alert('Erro ao enviar mensagem. Tente novamente.');
+        });
     } else {
         alert('Por favor, preencha todos os campos.');
     }
